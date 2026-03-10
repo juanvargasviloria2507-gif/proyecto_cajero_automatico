@@ -17,7 +17,7 @@ def menu():
 def main():
     bienvenida()
     while True:
-        usuario = input("Ingrese su usuario: ")
+        usuario = input(cyan("Ingrese su usuario: "))
         pin_correcto=validar_pin(usuario)
         while pin_correcto:
 
