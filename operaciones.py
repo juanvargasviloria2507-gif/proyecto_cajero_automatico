@@ -65,4 +65,55 @@ def retirar_dinero(usuario):
     cargando()
     print(correcto("Retiro exitoso"))
 
+    # guardar cambios
+    with open("datoscajero.json", "w") as archivo:
+        json.dump(datos, archivo, indent=4)
+
+def retiro_rapido(usuario):
+
+    print("""
+1. $200
+2. $500
+3. $700
+4. $1000
+""")
+
+    opcion = input("Seleccione monto a retirar: ")
+
+    montos = {
+        "1": 200,
+        "2": 500,
+        "3": 700,
+        "4": 1000
+    }
+
+    if opcion not in montos:
+        print(error("Opción inválida"))
+        return
+
+    monto = montos[opcion]
+
+    if monto > datos[usuario]["saldo"]:
+        print(error("Saldo insuficiente"))
+        return
+
+    if datos[usuario]["retirado_hoy"] + monto > datos[usuario]["limite_diario"]:
+        print(advertencia("Supera el límite diario"))
+        return
+    datos[usuario]["saldo"] -= monto
+    datos[usuario]["retirado_hoy"] += monto
+    datos["cajero"]["efectivo_disponible"] -= monto
+
+    datos[usuario]["movimientos"].append(f"Retiro Rapido: ${monto}")
+
+    cargando()
+    print(correcto("Retiro rápido exitoso"))
+
+    # guardar cambios
+    with open("datoscajero.json", "w") as archivo:
+        json.dump(datos, archivo, indent=4)
+
+    
+
+
     
