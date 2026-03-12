@@ -1,0 +1,26 @@
+{
+    "Juan": {
+        "saldo": 500,
+        "pin": "1234",
+        "movimientos": [
+            "Consulta de saldo",
+            "Retiro: $100",
+            "Retiro Rapido: $500",
+            "Retiro Rapido: $100"
+        ],
+        "retirado_hoy": 600,
+        "limite_diario": 1000,
+        "limite_intentos": 4
+    },
+    "Migue": {
+        "saldo": 1000,
+        "pin": "1235",
+        "movimientos": [],
+        "retirado_hoy": 0,
+        "limite_diario": 1000,
+        "limite_intentos": 4
+    },
+    "cajero": {
+        "efectivo_disponible": 500
+    }
+}
