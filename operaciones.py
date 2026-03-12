@@ -114,6 +114,32 @@ def retiro_rapido(usuario):
         json.dump(datos, archivo, indent=4)
 
     
+ ##3
 
+def depositar_dinero(usuario):
+    monto = int(input("Monto a depositar: "))
+
+    if monto <= 0:
+        print(error("Monto inválido"))
+        return
+
+    datos[usuario]["saldo"]  += monto
+    datos[usuario]["movimientos"].append(f"Deposito: ${monto}")
+    # guardar cambios
+    with open("datoscajero.json", "w") as archivo:
+        json.dump(datos, archivo, indent=4)
+    cargando()
+    print(correcto("Depósito exitoso"))
+
+def consultar_movimientos(usuario):
+    print("\n==== HISTORIAL ====")
+
+    if not datos[usuario]["movimientos"]:
+        print("No hay movimientos aún")
+    else:
+        for m in datos[usuario]["movimientos"]:
+            print(m)
+
+    print("===================\n")
 
     
